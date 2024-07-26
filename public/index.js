@@ -1166,13 +1166,17 @@ async function playSong(track){
 	.then(result => console.log("Updated listening to"))
 	.catch(err => console.log(err));
 
-	const genre = await getGenre(track.artists[0].name, track.name)
-	if(genre) currentTrack.genre = genre;
-	else currentTrack.genre = ["others"];
-
-	const artistResponse = await fetch(`https://api.spotify.com/v1/artists/${track.artists[0].id}`, {headers: { 'Authorization': `Bearer ${token}` }});
-	const artist = await artistResponse.json();
-	currentTrack.artists[0].images = artist.images;
+	if(!currentTrack.is_local){
+		const genre = await getGenre(track.artists[0].name, track.name)
+		if(genre) currentTrack.genre = genre;
+		else currentTrack.genre = ["others"];
+	
+		const artistResponse = await fetch(`https://api.spotify.com/v1/artists/${track.artists[0].id}`, {headers: { 'Authorization': `Bearer ${token}` }});
+		const artist = await artistResponse.json();
+		currentTrack.artists[0].images = artist.images;
+	}else{
+		currentTrack.genre = ["local"];
+	}
 
 	//displaying the lyrics
 	fetch(`https://api.lyrics.ovh/v1/${currentTrack.artists[0].name}/${currentTrack.name}`)
