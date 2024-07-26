@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+    <div id="container">
+        <h1>Login</h1>
+        <form id="loginForm">
+            <div class="inputBox" id="username">
+                <label for="usernameInput">Username</label>
+                <input type="text" id="usernameInput" name="username" required>
+            </div>
+            <div class="inputBox" id="password">
+                <label for="passwordInput">Password</label>
+                <input type="password" id="passwordInput" name="password" required>
+            </div>
+            <button id="loginBtn">Login</button>
+        </form>
+        <!-- <button id="DAuth">Login with D-Auth</button> -->
+        <div id="registerDiv">
+            Don't have an account? <a href="/register">Create one</a>
+        </div>
+    </div>
+
+    <script src="login.js"></script>
+</body>
+</html>

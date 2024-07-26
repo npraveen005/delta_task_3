@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Song</title>
+
+    <link rel="stylesheet" href="upload.css">
+</head>
+<body>
+    <div id="container">
+        <h1>Upload Song</h1>
+        <form id="uploadForm" enctype="multipart/form-data" method="POST">
+            <div class="inputBox">
+                <label for="titleInput">Title</label>
+                <input type="text" id="titleInput" name="title" required>
+            </div>
+            <div class="inputBox">
+                <label for="artistInput">Artist</label>
+                <input type="text" id="artistInput" name="artist" required>
+            </div>
+            <div class="inputBox">
+                <label for="albumInput">Album</label>
+                <input type="text" id="albumInput" name="album">
+            </div>
+            <div>
+                <label for="fileInput">Song File</label>
+                <input type="file" id="fileInput" accept="audio/*" name="song" required>
+            </div>
+            <div>
+                <label for="coverImgInput">Cover Image</label>
+                <input type="file" id="coverImgInput" accept="image/*" name="coverImg" required>
+            </div>
+            <button id="uploadBtn">Upload</button>
+        </form>
+    </div>
+
+    <script>
+        const artistName = JSON.parse(localStorage.getItem("loggedInUser"));
+        document.querySelector("#artistInput").value = artistName;
+
+        document.querySelector("#uploadForm").onsubmit = (e) => {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            
+            fetch(`/${artistName}/upload-song`, {
+                method: "POST",
+                body: formData
+            })
+            .then(response => window.location.href = "/")
+            .catch(err => console.error(err));
+        }
+    </script>
+</body>
+</html>

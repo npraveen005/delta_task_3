@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>D-Tunes</title>
+
+    <link rel="stylesheet" href="style.css">
+    <!-- <link rel="stylesheet" href="./public/style.css"> -->
+</head>
+<body>
+    <div id="container">
+        <div id="displayContainer">
+            <div id="menuContainer">
+                <button id="menuBtn"><i class="fa-solid fa-bars"></i></button>
+                <button id="homeBtn"><i class="fa-solid fa-house"></i></button>
+                <button id="searchBtn"><i class="fa-solid fa-magnifying-glass"></i></button>
+                <button id="profileBtn"><img src="./media/default_profile.jpg"></button>
+            </div>
+            <div id="sidebarContainer">
+                <div id="homeSection"><span><i class="fa-solid fa-house"></i></span><span>Home</span></div>
+                <div id="searchSection"><span><i class="fa-solid fa-magnifying-glass"></i></span><span>Search</span></div>
+                <div id="profileSection"><span><i class="fa-solid fa-user"></i></span><span>Profile</span></div><hr>
+                <div id="playlistsContainer"><span>Add Playlist</span><button id="addPlaylistBtn"><i class="fa-solid fa-plus"></i></button></div><hr>
+                <div id="partySection">
+                    <span id="heading">Party</span>
+                    <div id="partyList"></div>
+                    <button id="partyBtn">Start a Party <i class="fa-solid fa-champagne-glasses"></i></button>
+                </div>
+            </div>
+            <div id="mainContainer">
+                <div id="lyricsContainer"><pre></pre></div>
+                <div id="homeContainer"></div>
+                <div class="searchContainer" id="searchContainer">
+                    <input type="text" id="searchBar" placeholder="Search...">
+                    <button id="accountBtn"><i class="fa-solid fa-users"></i></button>
+                    <button id="playlistBtn"><i class="fa-solid fa-list-ul"></i></button>
+                </div>
+                <div id="profileContainer">
+                    <div id="userInfo">
+                        <div id="profilePicContainer">
+                            <img id="profilePic" src="./media/default_profile.jpg">
+                            <button id="editBtn"><i class="fa-solid fa-pen"></i></button>
+                            <input type="file" id="profilePicInput" style="display: none;">
+                        </div>
+                        <span id="username">--</span>
+                        <div id="artistTag" title="Artist"><i class="fa-brands fa-itunes-note"></i></div>
+                    </div>
+                    <div id="friendRequestsContainer">
+                        <h1>Friend Requests</h1>
+                        <ul id="friendRequests">
+                        </ul>
+                    </div>
+                    <div id="friendsContainer">
+                        <h1>Friends</h1>
+                        <ul id="friends">
+                        </ul>
+                    </div>
+                    <div id="stats">
+                        <h1>Stats</h1>
+                        <h3>Favorite Artists</h3><div id="favoriteArtists"></div>
+                        <h3>Favorite Tracks</h3><div id="favoriteTracks"></div>
+                        <h3>Favorite Genres</h3><div id="favoriteGenres"></div>
+                    </div>
+                    <button id="artistBtn">Become an Artist</button>
+                    <button id="uploadBtn"><i class="fa-solid fa-upload"></i>Upload</button>
+                    <button id="logoutBtn">Logout <i class="fa-solid fa-right-from-bracket"></i></button>
+                    <a href="/login" style="text-decoration: none;"><button id="loginBtn">Login</button></a>
+                </div>
+                <div id="partyContainer"></div>
+                <div class="searchResultsContainer" id="searchResultsContainer"></div>
+                <div id="mobileSongDisplayContainer">
+                    <div id="topDiv">
+                        <button id="minimizeBtn"><i class="fa-solid fa-angle-down"></i></button>
+                        <span id="songTitle">Untiltled</span>
+                    </div>
+                    <img class="coverImg" src="./media/default_image.jpg">
+                    <div id="songDetails">
+                        <span class="songTitle">Untiltled</span>
+                        <span class="songArtist">Artist</span>
+                    </div>
+                    <div id="mobileControls">
+                        <div id="mobileProgressBar">
+                            <span id="currentTime">00:00</span>
+                            <input type="range" min="0" max="100" value="0">
+                            <span id="totalDuration">00:00</span>
+                        </div>
+                        <div id="mobileButtonControls">
+                            <button class="prevBtn"><i class="fa-solid fa-backward"></i></button>
+                            <button class="playBtn"><i class="fa-solid fa-play"></i></button>
+                            <button class="nextBtn"><i class="fa-solid fa-forward"></i></button>
+                        </div>
+                    </div>
+                    <div id="lyrics"></div>
+                </div>
+            </div>
+        </div>
+        <div id="playbackContainer">
+            <iframe id="songIframe"></iframe>
+            <div id="desktopPlaybackContainer" >
+                <div id="cover">
+                    <img class="coverImg" src="./media/default_image.jpg">
+                    <div id="songDetails">
+                        <span class="songTitle">Untiltled</span>
+                        <span class="songArtist">Artist</span>
+                    </div>
+                    <div id="likeDislikeContainer">
+                        <button id="likeBtn" state="none"><i class="fa-regular fa-thumbs-up"></i></button>
+                        <button id="disLikeBtn" state="none"><i class="fa-regular fa-thumbs-down"></i></button>
+                    </div>
+                </div>
+                <div id="controlsContainer">
+                    <div id="controlButtonContainer">
+                        <button class="prevBtn"><i class="fa-solid fa-backward"></i></button>
+                        <button class="playBtn" state="play"><i class="fa-solid fa-play"></i></button>
+                        <button class="nextBtn"><i class="fa-solid fa-forward"></i></button>
+                    </div>
+                    <div id="progressBarContainer">
+                        <span id="currentTimeDisplay">00:00</span>
+                        <input type="range" id="progressBar" value="0">
+                        <span id="totalDurationDisplay">--:--</span>
+                    </div>
+                </div>
+                <div id="buttonContainer">
+                    <button id="lyricsBtn" state="show"><i class="fa-solid fa-file-lines"></i></button>
+                </div>
+            </div>
+            <div id="mobilePlaybackContainer">
+                <div id="cover">
+                    <img class="coverImg" src="./media/default_image.jpg">
+                    <div id="songDetails">
+                        <span class="songTitle">Untiltled</span>
+                        <span class="songArtist">Artist</span>
+                    </div>
+                </div>
+                <button class="playBtn"><i class="fa-solid fa-play"></i></button>
+                <div id="mobileProgressBar"></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="loadingScreen"><div id="loadingBar"></div></div>
+
+    <script type="module" src="index.js"></script>
+    <!-- <script type="module" src="./public/index.js"></script> -->
+    <script src="https://open.spotify.com/embed/iframe-api/v1" async></script>
+    <script src="https://kit.fontawesome.com/dac89c04df.js" crossorigin="anonymous"></script>
+</body>
+</html>
