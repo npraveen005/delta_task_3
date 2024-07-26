@@ -987,6 +987,10 @@ function updateProgressBar(){
 			progressBar.value = (currentTimeInMs / currentTrack.duration_ms) * 100;
 			mobileSongDisplayContainer.querySelector("#mobileProgressBar input").value = (currentTimeInMs / currentTrack.duration_ms) * 100;
 		}
+		if(!temp){
+			progressBar.style.setProperty('--range-progress', `${progressBar.value}%`);
+			mobileSongDisplayContainer.querySelector("#mobileProgressBar input").style.setProperty('--range-progress', `${mobileSongDisplayContainer.querySelector("#mobileProgressBar input").value}%`);
+		}
 		currentTimeInMs += PROGRESSBAR_UPDATE_FREQUENCY;
 		currentTimeDisplay.innerHTML = formatTime(currentTimeInMs);
 
